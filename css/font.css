@@ -1,0 +1,103 @@
+
+/* 
+Brutal
+- Black
+- Bold
+- ExtraBold
+- ExtraLight
+- Light
+- Medium
+- Regular
+- Thin
+*/
+
+@font-face {
+    font-family: 'Brutal-Black';
+    src: url(/font/BrutalType-Black.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-Bold';
+    src: url(/font/BrutalType-Bold.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-ExtraBold';
+    src: url(/font/BrutalType-ExtraBold.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-ExtraLight';
+    src: url(/font/BrutalType-ExtraLight.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-Light';
+    src: url(/font/BrutalType-Light.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-Medium';
+    src: url(/font/BrutalType-Medium.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-Regular';
+    src: url(/font/BrutalType-Regular.otf);
+}
+
+@font-face {
+    font-family: 'Brutal-Thin';
+    src: url(/font/BrutalType-Thin.otf);
+}
+
+/* 
+GenEiGothicPro
+- Bold
+- Heavy
+- Light
+- Regular
+- SemiBold
+*/
+
+@font-face {
+    font-family: 'GenEiGothicPro-Bold';
+    src: url(/font/GenEiGothicPro-Bold.otf);
+}
+
+@font-face {
+    font-family: 'GenEiGothicPro-Heavy';
+    src: url(/font/GenEiGothicPro-Heavy.otf);
+}
+
+@font-face {
+    font-family: 'GenEiGothicPro-Light';
+    src: url(/font/GenEiGothicPro-Light.otf);
+}
+
+@font-face {
+    font-family: 'GenEiGothicPro-Regular';
+    src: url(/font/GenEiGothicPro-Regular.otf);
+}
+
+@font-face {
+    font-family: 'GenEiGothicPro-SemiBold';
+    src: url(/font/GenEiGothicPro-SemiBold.otf);
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+button {
+    cursor: pointer !important;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}

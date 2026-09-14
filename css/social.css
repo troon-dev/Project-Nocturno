@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Toolbar */
+.toolbar {
+    background-color: #111111;
+    height: 28px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 100;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.toolbar .window-controls {
+    display: flex;
+    width: 110px;
+}
+
+.toolbar .window-controls button {
+    all: unset;
+    color: white;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar .window-controls button {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toolbar .window-controls .minimize {
+    background-image: url('/img/UI/Window/Minimize.png');
+    width: 56px;
+}
+
+.toolbar .window-controls .minimize:hover {
+    background-image: url('/img/UI/Window/Minimize_Hovered.png');
+}
+
+.toolbar .window-controls .minimize:active {
+    background-image: url('/img/UI/Window/Minimize_Pressed.png');
+}
+
+.toolbar .window-controls .maximize {
+    background-image: url('/img/UI/Window/Maximize.png');
+    width: 56px;
+}
+
+.toolbar .window-controls .maximize:hover {
+    background-image: url('/img/UI/Window/Maximize_Hovered.png');
+}
+
+.toolbar .window-controls .maximize:active {
+    background-image: url('/img/UI/Window/Maximize_Pressed.png');
+}
+
+.toolbar .window-controls .restore {
+    background-image: url('/img/UI/Window/Restore.png') !important;
+}
+
+.toolbar .window-controls .restore:hover {
+    background-image: url('/img/UI/Window/Restore_Hovered.png') !important;
+}
+
+.toolbar .window-controls .restore:active {
+    background-image: url('/img/UI/Window/Restore_Pressed.png') !important;
+}
+
+.toolbar .window-controls .exit {
+    width: 96px;
+    background-image: url('/img/UI/Window/Close.png');
+}
+
+.toolbar .window-controls .exit:hover {
+    background-image: url('/img/UI/Window/Close_Hovered.png');
+}
+
+.toolbar .window-controls .exit:active {
+    background-image: url('/img/UI/Window/Close_Pressed.png');
+}
+
+/* Main Styles */
+body {
+    background-color: #000000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    font-family: 'Brutal-Thin';
+    overflow-x: hidden;
+}
+
+main {
+    /* this has to be below the toolbar and the social controls */
+    margin-top: calc(28px + 58px);
+    width: 100%;
+    height: calc(100% - (28px + 58px));
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+button {
+    all: unset;
+    cursor: pointer !important;
+    background-color: #000000;
+    color: white;
+}
+
+button:hover {
+    background-color: #212121 !important;
+}
+
+/* Top bar */
+.social-controls {
+    position: fixed;
+    width: 100%;
+    top: 28px;
+    display: flex;
+    height: 59px;
+    background-color: #1E1E1E;
+    gap: 1px;
+}
+
+.social-controls button {
+    all: unset;
+    background-color: #000000;
+    width: calc(100% / 3);
+    height: 58px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-controls button:before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    filter: brightness(0.5);
+}
+
+.social-controls .social-status:before {
+    background-image: url('/img/UI/Social/SocialProfile.png');
+}
+
+.social-controls .add-friend:before {
+    background-image: url('/img/UI/Social/SocialAddFriend.png');
+}
+
+.social-controls .social-settings:before {
+    background-image: url('/img/UI/Social/SocialSettings.png');
+}
+
+.social-status .status {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+
+.social-status .status::after {
+    content: '';
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+}
+
+.social-status .online::after {
+    background-color: #42A206;
+}
+
+.social-status .offline::after {
+    background-color: #FF0000;
+}
+
+.social-status .away::after {
+    background-color: #FFA500;
+}
+
+/* List Dropdown Styles */
+.list-header {
+    height: 64px;
+    width: 100%;
+    background-color: black;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 45px;
+    font-family: 'Brutal-Regular';
+    letter-spacing: 1px;
+    font-size: 17px;
+    color: #888888;
+    border-top: 1px solid #333333;
+}
+
+.bottom-list:not(.active):not(.hidden) {
+    position: fixed;
+    bottom: 0;
+}
+
+.bottom-list:not(.active):not(.hidden) ~ .bottom-list:not(.active):not(.hidden) {
+    position: fixed;
+    bottom: 65px;
+}
+
+.list-header.active, .list-header:hover {
+    color: white;
+    background-color: #212121;
+}
+
+.list.collapsed {
+    display: none;
+}
+
+.list-header.hidden {
+    display: none !important;
+}
+
+.list {
+    margin-bottom: 150px;
+}
+
+.list .list-entry {
+    height: 84px;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Brutal-Light';
+    font-size: 16px;
+    letter-spacing: 1.3px;
+}
+
+.list-entry div {
+    display: flex;
+    align-items: center;
+}
+
+.list-entry .social-user {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.social-user .social-status {
+    color: #AFAFAF;
+}
+
+.social-orb {
+    width: 12px;
+    height: 12px;
+    margin: 15.5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-orb.online {
+    background-color: #42A206;
+}
+
+.social-orb.offline {
+    background-color: #ca2626;
+}
+
+.social-orb.away {
+    background-color: #FFA500;
+}
+
+.list .list-entry:hover {
+    background-color: #2D2D2D;
+}
+
+.context-menu {
+    position: fixed;
+    font-family: 'Brutal-Light';
+    background-color: #000000;
+    color: white;
+    display: none;
+    z-index: 1000;
+    border: 1px solid #333333;
+}
+
+.context-menu.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.context-menu .context-menu-item {
+    padding: 20px;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.context-menu .context-menu-item:hover {
+    background-color: #212121;
+}

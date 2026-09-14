@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1E1E1E;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    font-family: 'Brutal-Thin';
+    background-image: url('/img/BG_fortnite.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main {
+    margin-top: 25px;
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Toolbar */
+.toolbar {
+    height: 25px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 100;
+}
+
+.toolbar .window-controls {
+    display: flex;
+    width: 110px;
+}
+
+
+.toolbar .window-controls button {
+    all: unset;
+    color: white;
+    height: 20px;
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.toolbar .window-controls button {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.toolbar .window-controls .minimize {
+    background-image: url('/img/UI/Window/Minimize.png');
+    width: 56px;
+}
+
+.toolbar .window-controls .minimize:hover {
+    background-image: url('/img/UI/Window/Minimize_Hovered.png');
+}
+
+.toolbar .window-controls .minimize:active {
+    background-image: url('/img/UI/Window/Minimize_Pressed.png');
+}
+
+.toolbar .window-controls .maximize {
+    background-image: url('/img/UI/Window/Maximize.png');
+    width: 56px;
+}
+
+.toolbar .window-controls .maximize:hover {
+    background-image: url('/img/UI/Window/Maximize_Hovered.png');
+}
+
+.toolbar .window-controls .maximize:active {
+    background-image: url('/img/UI/Window/Maximize_Pressed.png');
+}
+
+.toolbar .window-controls .restore {
+    background-image: url('/img/UI/Window/Restore.png') !important;
+}
+
+.toolbar .window-controls .restore:hover {
+    background-image: url('/img/UI/Window/Restore_Hovered.png') !important;
+}
+
+.toolbar .window-controls .restore:active {
+    background-image: url('/img/UI/Window/Restore_Pressed.png') !important;
+}
+
+.toolbar .window-controls .exit {
+    width: 96px;
+    background-image: url('/img/UI/Window/Close.png');
+}
+
+.toolbar .window-controls .exit:hover {
+    background-image: url('/img/UI/Window/Close_Hovered.png');
+}
+
+.toolbar .window-controls .exit:active {
+    background-image: url('/img/UI/Window/Close_Pressed.png');
+}
+
+.discord-sign-in {
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    padding: 0px !important;
+    outline: none !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    height: 18px !important;
+    text-transform: uppercase;
+    border-radius: 3px !important;
+    width: 320px !important;
+    margin: 0 auto !important;
+}
+
+.nocturno-logo {
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container .input-container input {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: 'Brutal-Regular';
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 320px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.container .input-container button {
+    background-color: #85c990;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-family: 'Brutal-Regular';
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 320px;
+    cursor: pointer;
+    text-transform: uppercase;
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+.container .input-container button:hover {
+    opacity: 1;
+}
+
+.container .input-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
