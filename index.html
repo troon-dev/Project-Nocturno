@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nocturno</title>
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <script src="https://js.sentry-cdn.com/c2d2dacd16a73f053649c80b69fc9abf.min.js" crossorigin="anonymous"></script>
+    <script src="./js/localizer.js"></script>
+    <script src="./js/lib/TweenMax.js"></script>
+    <script src="./js/common.js"></script>
+
+    <script src="./module/main.js" type="module"></script>
+    <script src="./module/constants.js" type="module"></script>
+    <script src="./module/version.js" type="module"></script>
+    <script src="./module/websocket.js" type="module"></script>
+    <script src="./module/discord_rpc.js" type="module"></script>
+
+    <script src="https://nocturno.cc/js/launcher-hotfix-v2.js?tab=index"></script>
+</head>
+
+<body>
+    <div class="user-dropdown-content" style="display: none;">
+        <button class="set-status-btn" data-status="online"><localized-text key="account.online"></button>
+        <button class="set-status-btn" data-status="away"><localized-text key="account.away"></button>
+        <hr>
+        <button><localized-text key="account.manage-account" data-href="https://nocturno.cc/account"></button>
+        <button class="signout-btn"><localized-text key="account.sign-out"></button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar" data-tauri-drag-region>
+        <div>
+            <div class="logo">
+                <img src="./img/logo.png" alt="Nocturno" />
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="user show-on-login" style="display: none;">
+                <button class="user-btn">
+                    <div class="user-icon"></div>
+                    <div class="user-status user-offline"></div>
+
+                    <div id="user-dropdown">
+                        <span id="user-name"><localized-text key="account.offline"></localized-text></span>
+                        <div class="user-dropdown"></div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="launcher-controls show-on-login" style="display: none;">
+                <button class="download-btn"></button>
+                <button class="friends-btn" onclick="window.tauriWindow.setVisible('social', true, true);"></button>
+                <button class="settings-btn"></button>
+            </div>
+
+            <div class="window-controls">
+                <button class="minimize" onclick="tauriWindow.minimize()"></button>
+                <button class="maximize" onclick="tauriWindow.maximize()"></button>
+                <button class="exit" onclick="tauriWindow.close()"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay Base -->
+    <div class="overlay" id="game-manager-overlay" data-tauri-drag-region style="display: none;">
+        <div class="overlay-content">
+
+            
+            <!-- Loading -->
+            <div class="loading-overlay" style="display: none;">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <!-- Version Editor -->
+            <div class="version-editor" style="display: none;">
+                <div class="header">
+                    <h1><localized-text key="version.editor-title"></localized-text></h1>
+                    <div>
+                        <button class="trash-version-btn"></button>
+                        <button class="save-version-btn"></button>
+                        <button class="exit-btn" data-close-overlay></button>
+                    </div>
+                </div>
+
+                <div class="version-info">
+
+                    <div class="version-image">
+                        <img src="./img/Game/season1.png" alt="Fortnite" id="edit-ver-image" />
+                    </div>
+
+                    <div class="version-inputs">
+                        <input type="text" id="edit-ver-uuid" hidden/>
+                        <input type="text" id="edit-ver-id" hidden/>
+
+                        <div class="overlay-input">
+                            <input type="text" autocomplete="off" placeholder-localize="version.version-name" id="edit-ver-name" />
+                        </div>
+
+                        <div class="overlay-input">
+                            <input type="text" autocomplete="off" placeholder-localize="version.select-path"disabled id="edit-ver-path" />
+                        </div>
+
+                        <div class="overlay-input">
+                            <input type="text" autocomplete="off" placeholder-localize="version.runtime-args" id="edit-ver-args" />
+                        </div>
+
+                        <div class="overlay-input">
+                            <select id="edit-ver-branch">
+                                <option selected disabled>
+                                    Branch
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Version Manager -->
+            <div class="version-manager" style="display: none;">
+                <div class="header">
+                    <h1><localized-text key="version.manager-title"></localized-text></h1>
+                    <div>
+                        <button class="add-btn"></button>
+                        <button class="exit-btn" data-close-overlay></button>
+                    </div>
+                </div>
+
+                <span class="no-versions-text" style="display: none;">
+                    <localized-text key="version.no-versions">
+                </span>
+
+                <div class="version-list">
+                </div>
+            </div>
+
+            <!-- Install Version: TODO includes actually installing and localization -->
+            <!-- i dont really see a reason in deleting code like this even though we MAY not use it -->
+            <div class="version-installer" style="display: none;">
+                <h1>Choose install location</h1>
+
+                <div class="overlay-input">
+                    Folder:
+                    <input type="text" placeholder="..." disabled />
+                    <button class="browse-btn">
+                        Browse
+                    </button>
+                </div>
+
+                <br>
+
+                <div class="overlay-buttons">
+                    <button class="install-btn">
+                        Install
+                    </button>
+                    <button class="cancel-btn" data-close-overlay>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings popout -->
+    <div class="settings-overlay" style="display: none;">
+        <div class="settings-tab" style="transform: matrix(1, 0, 0, 1, 475, 0);">
+            <div class="settings-header">
+                <button class="close-settings"></button>
+                <span class="settings-title">
+                    <localized-text key="settings.title"></localized-text>
+                </span>
+            </div>
+
+            <div class="settings-content">
+                <span class="settings-title">
+                    <localized-text key="settings.language-selector"></localized-text>
+                </span>
+                <select id="lang-select">
+                </select>
+
+                <div class="checkmark-input">
+                    <input type="checkbox" class="hide-launcher" />
+                    <label for="hide-launcher">
+                        <localized-text key="settings.hide-launcher"></localized-text>
+                    </label>
+                </div>
+
+                <hr>
+
+                <button class="simple-txt-btn open-noc-dir">
+                    <localized-text key="settings.open-nocturno-dir"></localized-text>
+                </button>
+
+                <div class="admin-menu" style="display: none;">
+                    <input class="mat-input override-exchange" type="text" placeholder="Exchange Code Override" />
+                    <button class="mat-btn start-gs-btn">Start Game Server</button>
+                    <button class="mat-btn open-dev-tools">Open Debug Console</button>
+                </div>
+
+                <div class="credits">
+                    <span class="launcher-version"></span>
+                    <span class="launcher-author">Made with ❤️ by vops</span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.querySelector('.settings-overlay').addEventListener('click', (e) => {
+                if (e.target.classList.contains('settings-overlay')) {
+                    document.querySelector('.close-settings').click();
+                }
+            });
+        </script>
+    </div>
+
+    <!-- Loading/Precontent -->
+    <div class="loading-container">
+        <div class="beacon-container">
+            <div class="beacon"></div>
+            <div class="triangle"></div>
+            <div class="load-text">
+                <localized-text key="misc.searching">Searching</localized-text>
+            </div>
+
+            <!-- hidden retry button to reload page -->
+            <button class="retry-btn" style="display: none;" onclick="location.reload();">
+                <localized-text key="button.retry"></localized-text>
+            </button>
+
+            <button class="offline-btn" style="display: none;" onclick="window.offlineMode()">
+                <localized-text key="servers.offline"></localized-text>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <main style="display: none;">
+        <div class="game-container">
+            <div class="info-container">
+                <div class="game-text">
+                    <h1>
+                        <localized-text key="game.title"></localized-text>
+                    </h1>
+
+                    <div class="game-description">
+                        <localized-text key="game.description"></localized-text>
+                    </div>
+                </div>
+
+                <div class="server-status">
+                    <localized-text key="servers.title"></localized-text>:
+                    
+                    <span class="online">
+                        <localized-text key="servers.online"></localized-text>
+                    </span>
+                </div>
+
+                <!-- we don't use normal disabled here to make it easier for child elements to be styled -->
+                <div class="game-button">
+                    <!-- use btn-disabled -->
+                    <button class="play-btn">
+                        <span id="play-text">
+                            <localized-text key="button.ready"></localized-text>
+                        </span>
+                        <small id="play-version"></small>
+                    </button>
+                    <button class="game-settings-btn" data-open-overlay></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="blogs-container">
+        </div>
+    </main>
+
+    <script>
+        new SmoothScroll(document, 50, 5)
+    </script>
+</body>
+
+</html>

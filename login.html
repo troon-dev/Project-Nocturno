@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nocturno - Social</title>
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="https://js.sentry-cdn.com/c2d2dacd16a73f053649c80b69fc9abf.min.js" crossorigin="anonymous"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://nocturno.cc/js/launcher-hotfix-v2.js?tab=login"></script>
+</head>
+
+<body>
+    <div class="toolbar" data-tauri-drag-region>
+        <div class="window-controls">
+            <button class="minimize" onclick="tauriWindow.minimize()"></button>
+            <button class="maximize" onclick="tauriWindow.maximize()"></button>
+            <button class="exit" onclick="tauriWindow.close()"></button>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <img class="nocturno-logo" src="/img/nocturno-icon.png" alt="Nocturno" />
+
+
+            <!-- 9 number input -->
+            <div class="input-container">
+                <input id="auth-code" type="text" id="code" class="input" placeholder="000-000-000" maxlength="9" autocomplete="off" />
+                <button class="submit" id="auth-btn" disabled>Login</button>
+            </div>
+
+            <button class="discord-sign-in" onclick="tauriWindow.openExternal(`https://nocturno.cc/launcher-access`)">
+                Get Login Code
+            </button>
+        </div>
+    </main>
+</body>
+
+</html>

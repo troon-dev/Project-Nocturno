@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nocturno - Social</title>
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="./css/social.css" />
+    <script src="https://js.sentry-cdn.com/c2d2dacd16a73f053649c80b69fc9abf.min.js" crossorigin="anonymous"></script>
+
+    <script src="./js/localizer.js"></script>
+    <script src="./js/lib/TweenMax.js"></script>
+
+    <script src="./module/social.js" type="module"></script>
+    <script src="./js/common.js"></script>
+    <script src="./module/constants.js" type="module"></script>
+    <script src="https://nocturno.cc/js/launcher-hotfix-v2.js?tab=social"></script>
+</head>
+
+<body>
+    <div class="context-menu">
+        <button class="context-menu-item">vops didnt do it yet</button>
+    </div>
+
+    <div class="toolbar" data-tauri-drag-region>
+        <div class="window-controls">
+            <button class="minimize" onclick="tauriWindow.minimize()"></button>
+            <button class="maximize" onclick="tauriWindow.maximize()"></button>
+            <button class="exit" onclick="tauriWindow.setVisible('social', false)"></button>
+        </div>
+    </div>
+
+    <div class="social-controls">
+        <button class="social-status">
+            <span class="status online"></span>
+        </button>
+        <button class="add-friend"></button>
+        <button class="social-settings"></button>
+    </div>
+
+    <main>
+        <button class="list-header active" data-dropdown="online">
+            Online
+        </button>
+
+        <div class="list" id="online"></div>
+
+        <button class="list-header bottom-list hidden" data-dropdown="incoming">
+            Incoming
+        </button>
+
+        <div class="list collapsed" id="incoming"></div>
+
+        <button class="list-header bottom-list hidden" data-dropdown="outgoing">
+            Outgoing
+        </button>
+
+        <div class="list collapsed" id="outgoing"></div>
+    </main>
+</body>
+
+</html>
